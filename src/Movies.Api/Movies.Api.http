@@ -1,0 +1,43 @@
+### Create a Movie
+POST http://localhost:7069/movies
+Content-Type: application/json
+
+{
+  "title": "Inception",
+  "releaseYear": 2010,
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+  "genreIds": ["<genre-guid-1>", "<genre-guid-2>"]
+}
+
+### Get a Movie by ID
+GET http://localhost:7069/movies/<movie-guid>
+Content-Type: application/json
+
+### Update a Movie
+PUT http://localhost:7069/movies/<movie-guid>
+Content-Type: application/json
+
+{
+  "id": "<movie-guid>",
+  "title": "Inception",
+  "releaseYear": 2010,
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+  "genreIds": ["<genre-guid-1>", "<genre-guid-2>"]
+}
+
+### Delete a Movie
+DELETE http://localhost:7069/movies/<movie-guid>
+Content-Type: application/json
+
+### Rate a Movie
+POST http://localhost:7069/movies/<movie-guid>/rate
+Content-Type: application/json
+
+{
+  "movieId": "<movie-guid>",
+  "rating": 5
+}
+
+### Search Movies
+GET http://localhost:5000/movies/search?title=Inception&releaseYear=2010&genre=Sci-Fi
+Content-Type: application/json

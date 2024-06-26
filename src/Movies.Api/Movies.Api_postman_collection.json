@@ -1,0 +1,193 @@
+{
+  "info": {
+    "name": "Movies.Api",
+    "_postman_id": "b85b7c89-4917-4a6c-93a8-6a486c9f84cf",
+    "description": "Collection for Movies.Api endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Movie",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Inception\",\n  \"releaseYear\": 2010,\n  \"description\": \"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.\",\n  \"genreIds\": [\"<genre-guid-1>\", \"<genre-guid-2>\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:7069/movies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Movie by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:7069/movies/<movie-guid>",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies",
+            "<movie-guid>"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Movie",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<movie-guid>\",\n  \"title\": \"Inception\",\n  \"releaseYear\": 2010,\n  \"description\": \"A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.\",\n  \"genreIds\": [\"<genre-guid-1>\", \"<genre-guid-2>\"]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:7069/movies/<movie-guid>",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies",
+            "<movie-guid>"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Movie",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:7069/movies/<movie-guid>",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies",
+            "<movie-guid>"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Rate Movie",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"movieId\": \"<movie-guid>\",\n  \"rating\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:7069/movies/<movie-guid>/rate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies",
+            "<movie-guid>",
+            "rate"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search Movies",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:7069/movies/search?title=Inception&releaseYear=2010&genre=Sci-Fi",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7069",
+          "path": [
+            "movies",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "Inception"
+            },
+            {
+              "key": "releaseYear",
+              "value": "2010"
+            },
+            {
+              "key": "genre",
+              "value": "Sci-Fi"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
+
