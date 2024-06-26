@@ -1,6 +1,8 @@
 // Program.cs
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Movies.Api.Behaviors;
 using Movies.Api.Data;
 using Movies.Api.Endpoints;
 
@@ -11,12 +13,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Register MediatR and FluentValidation 
 var assembly = typeof(Program).Assembly;
-
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
-
 builder.Services.AddValidatorsFromAssembly(assembly);
-
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 var app = builder.Build();
 
