@@ -12,7 +12,7 @@ namespace Movies.Api.Endpoints
             app.MapPost("/movies", async (CreateMovieCommand command, ISender sender) =>
             {
                 var result = await sender.Send(command);
-                return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.ErrorType);
+                return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Errors);
             }).Produces<Result<Guid>>();
 
             //app.MapGet("/movies/{id:guid}", async (Guid id, ISender sender) =>
