@@ -35,7 +35,6 @@
     {
         public T Value { get; }
 
-        public Result() { }
         protected Result(bool isSuccess, T value, Error error)
             :base(isSuccess, error) 
         {
@@ -49,6 +48,8 @@
         }
 
         public static Result<T> Success(T value) => new Result<T>(true, value, Error.None);
-        public static Result<T> Failure(T value, Error error) => new Result<T>(false, default(T)!, error);
+        public static Result<T> Failure(T value, Error error) => new Result<T>(false, default(T)!, error);                
+        public static new Result<T> Failure(Error error) => new Result<T>(false, default(T)!, error);
+        
     }
 }
