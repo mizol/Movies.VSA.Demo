@@ -5,5 +5,5 @@ using Movies.Api.Features.Movies.Models;
 
 namespace Movies.Api.Features.Movies.GetMovie
 {
-    public record GetMovieQuery(Guid Id) : IRequest<Result<Movie>>;
+    public record GetMovieQuery(Guid Id) : IRequest<Result<MovieDto>>;
 }

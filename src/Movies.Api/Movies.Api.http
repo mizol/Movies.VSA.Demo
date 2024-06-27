@@ -6,36 +6,36 @@ Content-Type: application/json
   "title": "Inception",
   "releaseYear": 2010,
   "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-  "genreIds": ["<genre-guid-1>", "<genre-guid-2>"]
+  "genreIds": ["2360343a-93d0-485f-8182-552434ae7179", "65fa3cc9-3f4d-42fb-8b1c-c1dcd789d6ec"]
 }
 
 ### Get a Movie by ID
-GET http://localhost:7069/movies/<movie-guid>
+GET https://localhost:7069/movies/4b1a1dc6-5adf-4449-8626-8d250968d4bf
 Content-Type: application/json
 
 ### Update a Movie
-PUT http://localhost:7069/movies/<movie-guid>
+PUT https://localhost:7069/movies/596d6722-4624-4f24-ac50-d16d56f7a31e
 Content-Type: application/json
 
 {
-  "id": "<movie-guid>",
-  "title": "Inception",
-  "releaseYear": 2010,
-  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-  "genreIds": ["<genre-guid-1>", "<genre-guid-2>"]
+  "id": "596d6722-4624-4f24-ac50-d16d56f7a31e",
+  "title": "Inception Comeback",
+  "releaseYear": 2015,
+  "description": "Vertion 2",
+  "genreIds": ["2360343a-93d0-485f-8182-552434ae7179", "65fa3cc9-3f4d-42fb-8b1c-c1dcd789d6ec"]
 }
 
 ### Delete a Movie
-DELETE http://localhost:7069/movies/<movie-guid>
+DELETE https://localhost:7069/movies/aacb556f-f696-4750-969a-015b214ba9d5
 Content-Type: application/json
 
 ### Rate a Movie
-POST http://localhost:7069/movies/<movie-guid>/rate
+POST http://localhost:7069/movies/2f053594-a04d-4b97-aa64-2b59745d4e96/rate
 Content-Type: application/json
 
 {
-  "movieId": "<movie-guid>",
-  "rating": 5
+  "movieId": "2f053594-a04d-4b97-aa64-2b59745d4e96",
+  "rating": 4
 }
 
 ### Search Movies
