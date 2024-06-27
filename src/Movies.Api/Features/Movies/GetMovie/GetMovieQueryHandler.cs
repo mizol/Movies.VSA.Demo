@@ -26,7 +26,7 @@ namespace Movies.Api.Features.Movies.GetMovie
 
             if (movie == null)
             {
-                return Result<Movie>.Failure(movie, new Error("NotFound", "Movie not found."));
+                return Result<Movie>.Failure(new Error("Movie.NotFound", $"Movie not found by if: {request.Id}."));
             }
 
             return Result<Movie>.Success(movie);

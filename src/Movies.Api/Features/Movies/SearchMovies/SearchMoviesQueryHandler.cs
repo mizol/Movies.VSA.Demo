@@ -1,7 +1,7 @@
-﻿using Common.Core;
+﻿// Features/Movies/SearchMovies/SearchMoviesQueryHandler.cs
+using Common.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-// Features/Movies/SearchMovies/SearchMoviesQueryHandler.cs
 using Movies.Api.Data;
 using Movies.Api.Features.Movies.Models;
 
@@ -34,6 +34,8 @@ namespace Movies.Api.Features.Movies.SearchMovies
             {
                 query = query.Where(m => m.MovieGenres.Any(mg => mg.Genre.Name == request.Genre));
             }
+
+            // pagination
 
             var movies = await query
                 .Include(m => m.MovieGenres)

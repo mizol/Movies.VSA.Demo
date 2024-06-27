@@ -20,7 +20,7 @@ namespace Movies.Api.Features.Movies.DeleteMovie
 
             if (movie == null)
             {
-                return Result.Failure(new Error("NotFound", "Movie not found."));
+                return Result.Failure(new Error("NotFound", $"Movie not found by id: {request.Id}"));
             }
 
             _context.Movies.Remove(movie);

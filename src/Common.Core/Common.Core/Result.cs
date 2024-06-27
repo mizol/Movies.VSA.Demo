@@ -35,6 +35,12 @@
     {
         public T Value { get; }
 
+        public Result(T value, Error error)
+            : base(false, error)
+        {
+            Value = value;
+        }
+
         protected Result(bool isSuccess, T value, Error error)
             :base(isSuccess, error) 
         {

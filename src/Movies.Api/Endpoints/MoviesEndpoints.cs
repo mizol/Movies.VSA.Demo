@@ -22,8 +22,8 @@ namespace Movies.Api.Endpoints
             {
                 var command = request.Adapt<CreateMovieCommand>();
                 var result = await sender.Send(command);
-                return result.IsSuccess 
-                    ? Results.Ok(result.Value) 
+                return result.IsSuccess
+                    ? Results.Ok(result.Value)
                     : Results.BadRequest(result.Errors);
             })
             .WithName("CreateMovie")
@@ -43,9 +43,14 @@ namespace Movies.Api.Endpoints
             .Produces<Result<Movie>>(StatusCodes.Status200OK);
 
             // UpdateMovie
-            app.MapPut("/movies/{id:guid}", async (Guid id, UpdateMovieCommand command, ISender sender) =>
+            app.MapPut("/movies/{id:guid}", async (Guid id, UpdateMovieRequest request, ISender sender) =>
             {
-                if (id != command.Id) return Results.BadRequest("ID mismatch");
+                var command = request.Adapt<UpdateMovieCommand>();
+                if (id != command.Id)
+                {
+                    return Results.BadRequest("ID mismatch");
+                }
+
                 var result = await sender.Send(command);
                 return result.IsSuccess 
                     ? Results.Ok() 
@@ -68,9 +73,15 @@ namespace Movies.Api.Endpoints
             .Produces(StatusCodes.Status200OK);
 
             // RateMovie
-            app.MapPost("/movies/{id:guid}/rate", async (Guid id, RateMovieCommand command, ISender sender) =>
+            app.MapPost("/movies/{id:guid}/rate", async (Guid id, RateMovieRequest request, ISender sender) =>
             {
-                if (id != command.MovieId) return Results.BadRequest("ID mismatch");
+                var command = request.Adapt<RateMovieCommand>();
+
+                if (id != command.MovieId)
+                {
+                    return Results.BadRequest("ID mismatch");
+                }
+
                 var result = await sender.Send(command);
                 return result.IsSuccess 
                     ? Results.Ok() 

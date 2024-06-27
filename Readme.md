@@ -12,3 +12,11 @@ Youtube: https://youtu.be/msjnfdeDCmo?si=tt7k_vb2R6-zWi7O
 - FluentValidation:
  // Program.cs Register MediatR ValidationBehavior.cs
 
+- Carter nuget
+ // Map endpoints
+
+#What is the next
+- Pagination
+- EF Abstraction
+- Dapper for query
+- HATEOAS

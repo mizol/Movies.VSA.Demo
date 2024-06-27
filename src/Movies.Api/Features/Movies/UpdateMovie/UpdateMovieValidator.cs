@@ -1,14 +1,18 @@
 ﻿// Features/Movies/CreateMovie/CreateMovieValidator.cs
 using Common.Core;
 using FluentValidation;
-using Movies.Api.Services;
 
-namespace Movies.Api.Features.Movies.CreateMovie
+namespace Movies.Api.Features.Movies.UpdateMovie
 {
-    public class CreateMovieValidator : AbstractValidator<CreateMovieCommand>
+    public sealed class UpdateMovieValidator : AbstractValidator<UpdateMovieCommand>
     {
-        public CreateMovieValidator(IDateTimeProvider dateTimeProvider)
+        public UpdateMovieValidator(IDateTimeProvider dateTimeProvider)
         {
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .NotEqual(Guid.Empty)
+                .WithMessage("Movie ID is required.");
+
             RuleFor(x => x.Title)
                 .NotEmpty()
                 .MaximumLength(255)

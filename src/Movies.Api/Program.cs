@@ -1,4 +1,5 @@
 // Program.cs
+using Common.Core;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Movies.Api.Behaviors;
 using Movies.Api.Data;
 using Movies.Api.Endpoints;
 using Movies.Api.Middleware;
+using Movies.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,9 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBeh
 
 // Register global exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+// Register IDateTimeProvider
+builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
 var app = builder.Build();
 
