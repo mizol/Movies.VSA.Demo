@@ -1,11 +1,9 @@
 ﻿using Carter;
 using Common.Core;
-using Mapster;
 using MediatR;
+using Movies.Api.Extensions;
 using Movies.Api.Features.Movies.Models;
-using Movies.Api.Features.Movies.RateMovie;
 using Movies.Api.Features.Movies.SearchMovies;
-using Movies.Api.Requests;
 
 namespace Movies.Api.Features.Movies.GetMovie
 {
@@ -13,12 +11,12 @@ namespace Movies.Api.Features.Movies.GetMovie
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/movies/search", async (string title, int? releaseYear, string genre, ISender sender) =>
+            app.MapGet("/movies/search", async (string title, int? releaseYear, string? genre, ISender sender) =>
             {
                 var result = await sender.Send(new SearchMoviesQuery(title, releaseYear, genre));
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.BadRequest(result.Errors);
+                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("SearchMovies")
             .Produces(StatusCodes.Status400BadRequest)

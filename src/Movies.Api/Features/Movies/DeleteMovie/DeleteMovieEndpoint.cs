@@ -1,5 +1,6 @@
 ﻿using Carter;
 using MediatR;
+using Movies.Api.Extensions;
 
 namespace Movies.Api.Features.Movies.DeleteMovie
 {
@@ -12,7 +13,7 @@ namespace Movies.Api.Features.Movies.DeleteMovie
                 var result = await sender.Send(new DeleteMovieCommand(id));
                 return result.IsSuccess
                     ? Results.Ok()
-                    : Results.NotFound(result.Errors);
+                    : Results.NotFound(result.GetProblemDetails(StatusCodes.Status404NotFound));
             })
             .WithName("DeleteMovie")
             .Produces(StatusCodes.Status404NotFound)

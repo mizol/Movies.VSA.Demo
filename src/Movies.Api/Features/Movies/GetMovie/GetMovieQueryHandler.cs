@@ -32,15 +32,6 @@ namespace Movies.Api.Features.Movies.GetMovie
             }
 
             var movieDto = movie.Adapt<MovieDto>();
-            //movieDto.Genres =
-            //var movieDto = new MovieDto
-            //{
-            //    Id = movie.Id,
-            //    Title = movie.Title,
-            //    ReleaseYear = movie.ReleaseYear,
-            //    Description = movie.Description,
-            //    Genres = movie.MovieGenres.Select(mg => new GenreDto { Id = mg.Genre.Id, Name = mg.Genre.Name }).ToList()
-            //};
 
             return Result<MovieDto>.Success(movieDto);
         }

@@ -19,8 +19,8 @@ namespace Movies.Api.Middleware
 
             var response = new ProblemDetails
             {
-                Type = "Internal server error",
-                Status = 500,
+                Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
+                Status = StatusCodes.Status500InternalServerError,
                 Title = "Internal server error",
                 Detail = "An unexpected error occurred. Please try again later."
             };

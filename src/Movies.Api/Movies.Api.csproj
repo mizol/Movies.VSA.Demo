@@ -28,11 +28,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Index.html" />
     <None Remove="Movies.Api.http" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="D:\DEV\PRJ_STUDY\CleanArchitectureApps\MoviesApi\src\Movies.Api\.editorconfig" />
+    <None Include="wwwroot\Readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="wwwroot\Index.html" />
   </ItemGroup>
 
   <ItemGroup>

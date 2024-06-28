@@ -56,8 +56,11 @@ app.UseHttpsRedirection();
 
 app.UseExceptionHandler();
 
+app.UseStaticFiles();
+
 // Map the default endpoint
-app.MapGet("/", () => "Welcome to the Movies API! \r\n\r\nIt's a pet project to learn minimal-api and Verstical Slice Architecture (VSA).");
+//app.MapGet("/", () => "Welcome to the Movies API! \r\n\r\nIt's a pet project to learn minimal-api and Verstical Slice Architecture (VSA).");
+app.MapGet("/", () => Results.Redirect("/Index.html"));
 
 // Map movie endpoints
 app.MapCarter();

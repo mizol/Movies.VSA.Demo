@@ -1,6 +1,7 @@
 ﻿using Carter;
 using Common.Core;
 using MediatR;
+using Movies.Api.Extensions;
 using Movies.Api.Features.Movies.Models;
 
 namespace Movies.Api.Features.Movies.GetMovie
@@ -14,7 +15,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(new GetMovieQuery(id));
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.NotFound(result.Errors);
+                    : Results.NotFound(result.GetProblemDetails(StatusCodes.Status404NotFound));
             })
             .WithName("GetMovie")
             .Produces(StatusCodes.Status404NotFound)

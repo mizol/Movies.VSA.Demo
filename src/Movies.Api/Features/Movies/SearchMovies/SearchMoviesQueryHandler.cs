@@ -41,6 +41,7 @@ namespace Movies.Api.Features.Movies.SearchMovies
                 .Include(m => m.MovieGenres)
                 .ThenInclude(mg => mg.Genre)
                 .Include(m => m.MovieRatings)
+                .AsSplitQuery()
                 .ToListAsync(cancellationToken);
 
             return Result<List<Movie>>.Success(movies);

@@ -1,6 +1,7 @@
 ﻿using Carter;
 using Mapster;
 using MediatR;
+using Movies.Api.Extensions;
 using Movies.Api.Features.Movies.RateMovie;
 using Movies.Api.Requests;
 
@@ -22,7 +23,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(command);
                 return result.IsSuccess
                     ? Results.Ok()
-                    : Results.BadRequest(result.Errors);
+                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("RateMovie")
             .Produces(StatusCodes.Status400BadRequest)

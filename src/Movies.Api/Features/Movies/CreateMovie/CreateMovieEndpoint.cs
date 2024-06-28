@@ -2,6 +2,7 @@
 using Common.Core;
 using Mapster;
 using MediatR;
+using Movies.Api.Extensions;
 using Movies.Api.Requests;
 
 namespace Movies.Api.Features.Movies.CreateMovie
@@ -18,7 +19,7 @@ namespace Movies.Api.Features.Movies.CreateMovie
 
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.BadRequest(result.Errors);
+                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("CreateMovie")
             .Produces(StatusCodes.Status400BadRequest)

@@ -7,6 +7,7 @@
     {
         public static void Configure()
         {
+            // Movie.Genres
             TypeAdapterConfig<Movie, MovieDto>.NewConfig()
                 .Map(dest => dest.Genres, src => src.MovieGenres.Select(mg => mg.Genre.Adapt<GenreDto>()));
 

@@ -17,10 +17,10 @@ namespace Movies.Api.Features.Movies.DeleteMovie
         public async Task<Result> Handle(DeleteMovieCommand request, CancellationToken cancellationToken)
         {
             var movie = await _context.Movies.FindAsync(new object[] { request.Id }, cancellationToken);
-
+            
             if (movie == null)
             {
-                return Result.Failure(new Error("NotFound", $"Movie not found by id: {request.Id}"));
+                return Result.Failure(new Error("Movie.NotFound", $"Movie not found by id: {request.Id}"));
             }
 
             _context.Movies.Remove(movie);
