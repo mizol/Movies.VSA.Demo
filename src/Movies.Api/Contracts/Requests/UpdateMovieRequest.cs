@@ -1,4 +1,4 @@
-﻿namespace Movies.Api.Requests
+﻿namespace Movies.Api.Contracts.Requests
 {
     public class UpdateMovieRequest
     {

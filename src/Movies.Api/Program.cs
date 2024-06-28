@@ -1,5 +1,4 @@
 // Program.cs
-using System.Text.Json.Serialization;
 using Carter;
 using Common.Core;
 using FluentValidation;
@@ -11,6 +10,7 @@ using Movies.Api.Configuration;
 using Movies.Api.Data;
 using Movies.Api.Middleware;
 using Movies.Api.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

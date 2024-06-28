@@ -1,8 +1,8 @@
 ﻿using Carter;
 using Mapster;
 using MediatR;
+using Movies.Api.Contracts.Requests;
 using Movies.Api.Features.Movies.UpdateMovie;
-using Movies.Api.Requests;
 
 namespace Movies.Api.Features.Movies.GetMovie
 {

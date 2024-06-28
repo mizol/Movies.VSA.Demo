@@ -1,8 +1,8 @@
-﻿namespace Movies.Api.Requests
+﻿namespace Movies.Api.Contracts.Requests
 {
     public record CreateMovieRequest(
         string Title,
         int ReleaseYear,
         string Description,
-        List<Guid> GenreIds);          
+        List<Guid> GenreIds);
 }

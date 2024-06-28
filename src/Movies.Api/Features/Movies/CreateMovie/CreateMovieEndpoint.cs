@@ -2,8 +2,8 @@
 using Common.Core;
 using Mapster;
 using MediatR;
+using Movies.Api.Contracts.Requests;
 using Movies.Api.Extensions;
-using Movies.Api.Requests;
 
 namespace Movies.Api.Features.Movies.CreateMovie
 {
