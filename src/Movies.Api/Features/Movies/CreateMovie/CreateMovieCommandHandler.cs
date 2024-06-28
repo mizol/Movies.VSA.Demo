@@ -1,8 +1,8 @@
 ﻿// Features/Movies/CreateMovie/CreateMovieCommandHandler.cs
+using Common.Core;
 using MediatR;
 using Movies.Api.Data;
 using Movies.Api.Features.Movies.Models;
-using Common.Core;
 
 namespace Movies.Api.Features.Movies.CreateMovie
 {

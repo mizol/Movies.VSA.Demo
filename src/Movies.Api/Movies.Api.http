@@ -3,9 +3,9 @@ POST https://localhost:7069/movies
 Content-Type: application/json
 
 {
-  "title": "Test Name",
-  "releaseYear": 2021,
-  "description": "Test description",
+  "title": "Test Name 2",
+  "releaseYear": 2022,
+  "description": "Test description 2",
   "genreIds": ["2360343a-93d0-485f-8182-552434ae7179", "65fa3cc9-3f4d-42fb-8b1c-c1dcd789d6ec"]
 }
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
   "id": "e35f3d1a-0558-4270-b118-594589bc2bdf",
-  "title": "Inception Comeback",
+  "title": "Inception Comeback 3",
   "releaseYear": 2015,
   "description": "Vertion 2",
   "genreIds": ["2360343a-93d0-485f-8182-552434ae7179", "65fa3cc9-3f4d-42fb-8b1c-c1dcd789d6ec"]
@@ -39,5 +39,5 @@ Content-Type: application/json
 }
 
 ### Search Movies
-GET https://localhost:7069/movies/search?title=Inception&genre=Sci-Fi
+GET https://localhost:7069/movies/search?title=Test&genre=Sci-Fi
 Content-Type: application/json
