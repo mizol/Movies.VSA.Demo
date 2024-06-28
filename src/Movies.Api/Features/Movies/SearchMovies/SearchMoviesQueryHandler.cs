@@ -1,5 +1,6 @@
 ﻿// Features/Movies/SearchMovies/SearchMoviesQueryHandler.cs
 using Common.Core;
+using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Movies.Api.Data;
@@ -7,7 +8,7 @@ using Movies.Api.Features.Movies.Models;
 
 namespace Movies.Api.Features.Movies.SearchMovies
 {
-    public class SearchMoviesQueryHandler : IRequestHandler<SearchMoviesQuery, Result<List<Movie>>>
+    public class SearchMoviesQueryHandler : IRequestHandler<SearchMoviesQuery, Result<List<MovieDto>>>
     {
         private readonly ApplicationDbContext _context;
 
@@ -16,7 +17,7 @@ namespace Movies.Api.Features.Movies.SearchMovies
             _context = context;
         }
 
-        public async Task<Result<List<Movie>>> Handle(SearchMoviesQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<MovieDto>>> Handle(SearchMoviesQuery request, CancellationToken cancellationToken)
         {
             var query = _context.Movies.AsQueryable();
 
@@ -44,7 +45,8 @@ namespace Movies.Api.Features.Movies.SearchMovies
                 .AsSplitQuery()
                 .ToListAsync(cancellationToken);
 
-            return Result<List<Movie>>.Success(movies);
+            var movieDtoList = movies.Adapt<List<MovieDto>>();
+            return Result<List<MovieDto>>.Success(movieDtoList);
         }
     }
 

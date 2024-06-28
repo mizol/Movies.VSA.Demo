@@ -11,7 +11,7 @@ namespace Movies.Api.Features.Movies.GetMovie
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/movies/search", async (string title, int? releaseYear, string? genre, ISender sender) =>
+            app.MapGet("/movies/search", async (string title, int? releaseYear, string genre, ISender sender) =>
             {
                 var result = await sender.Send(new SearchMoviesQuery(title, releaseYear, genre));
                 return result.IsSuccess
