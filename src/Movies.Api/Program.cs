@@ -27,9 +27,12 @@ MapsterConfiguration.Configure();
 
 // Register MediatR and FluentValidation 
 var assembly = typeof(Program).Assembly;
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(assembly);
+    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
 builder.Services.AddValidatorsFromAssembly(assembly);
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 // Register global exception handler
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -59,7 +62,6 @@ app.UseExceptionHandler();
 app.UseStaticFiles();
 
 // Map the default endpoint
-//app.MapGet("/", () => "Welcome to the Movies API! \r\n\r\nIt's a pet project to learn minimal-api and Verstical Slice Architecture (VSA).");
 app.MapGet("/", () => Results.Redirect("/Index.html"));
 
 // Map movie endpoints
