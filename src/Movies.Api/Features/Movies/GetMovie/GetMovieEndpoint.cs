@@ -1,8 +1,8 @@
 ﻿using Carter;
 using Common.Core;
 using MediatR;
+using Movies.Api.Contracts.Responses;
 using Movies.Api.Extensions;
-using Movies.Api.Features.Movies.Models;
 
 namespace Movies.Api.Features.Movies.GetMovie
 {

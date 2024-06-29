@@ -1,56 +1,49 @@
 
-## Welcome to the Movies API!
-### Vertical Slice Architecture Project Setup From Scratch
-
+# Welcome to the Movies API!
 
 It's a pet project to learn minimal-api and Verstical Slice Architecture (VSA).
 I'd like to document me learning path for the minimal API concept.
 In addition to the VSA I'd like to hightlight some extra aspects that I faced with.
 
-I was inspired by this youtube channel: 
-[Milan Jovanović](https://www.youtube.com/@MilanJovanovicTech)
 
-Solution scheme:
+### REPR Pattern
 
+The REPR Design Pattern defines web API endpoints as having three components: a Request, an Endpoint, and a Response. It simplifies the frequently-used MVC pattern and is more focused on API development.
 
-### The project features under test
+- [REPR Pattern - Chaitanya (Chey) Penmetsa](https://medium.com/codenx/repr-pattern-endpoints-in-net-8-013fff3e8cfa)
 
-- Verstical Slice Architecture (VSA)
+### Verstical Slice Architecture (VSA)
 
-Nick Chapsas
-https://youtu.be/Ve__md8LeDY?si=QgOsR294epD9Z5tp
+Vertical Slice Architecture was born from the pain of working with layered architectures. They force you to make changes in many different layers to implement a feature.
 
+- [Vertical Slice Architecture - Milan Jovanović](https://www.milanjovanovic.tech/blog/vertical-slice-architecture)
 
-- MediatR
+- (Youtube) [Vertical Slice Architecture Project Setup From Scratch - Milan Jovanović](https://youtu.be/msjnfdeDCmo?si=tt7k_vb2R6-zWi7O)
 
-- CQRS
-
+- (Youtube) [Getting Started With MediatR and Vertical Slices in .NET - Nick Chapsas](https://youtu.be/Ve__md8LeDY?si=QgOsR294epD9Z5tp)
 
 
+### CQRS with MediatR
 
-- [Result Pattern - Milan](https://www.milanjovanovic.tech/blog/functional-error-handling-in-dotnet-with-the-result-pattern) The Result class implementation: Common.Core.Result.cs. 
+CQRS stands for Command Query Responsibility Segregation. The CQRS pattern uses separate models for reading and updating data. The benefits of using CQRS are complexity management, improved performance, scalability, and security.
+
+- [CQRS Pattern with MediatR - Milan Jovanović](https://www.milanjovanovic.tech/blog/cqrs-pattern-with-mediatr)
+
+
+### Result Pattern
 
 The Result pattern is a way to handle operations that can succeed or fail, providing more structure and clarity compared to traditional error handling.
 
-```C#
-    app.MapDelete("/movies/{id:guid}", async (Guid id, ISender sender) =>
-    {
-        var result = await sender.Send(new DeleteMovieCommand(id));
-        return result.IsSuccess
-            ? Results.Ok()
-            : Results.NotFound(result.GetProblemDetails(StatusCodes.Status404NotFound));
-    })
-    .WithName("DeleteMovie")
-    .Produces(StatusCodes.Status404NotFound)
-    .Produces(StatusCodes.Status200OK);
-```
+- [Functional Error Handling in .NET With the Result Pattern - Milan Jovanović](https://www.milanjovanovic.tech/blog/functional-error-handling-in-dotnet-with-the-result-pattern)
 
-- ProblemDetails
+
+### ProblemDetails
 
 A machine-readable format for specifying errors in HTTP API responses based on.
 
-[Problem Details MS Doc](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.problemdetails?view=aspnetcore-8.0)
+- [Problem Details MS Doc](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.problemdetails?view=aspnetcore-8.0)
 
+Example:
 ```C#
     [HttpDelete("{id}")]
     public ActionResult DeleteOrder(int id)
@@ -70,22 +63,91 @@ A machine-readable format for specifying errors in HTTP API responses based on.
     }
 ```
 
-- GlobalExceptionHandler .NET8 and IExceptionHandler
+### GlobalExceptionHandler .NET8 and IExceptionHandler
 
-[Exception handling middleware - Milan](https://www.milanjovanovic.tech/blog/global-error-handling-in-aspnetcore-8)
+Global Exception Handler it's a place to log and handle unknown errors.
+
+- [Global Error Handling in ASP.NET Core 8 - Milan Jovanović](https://www.milanjovanovic.tech/blog/global-error-handling-in-aspnetcore-8)
 
 
-- Carter nuget
- // Map endpoints
+### Carter nuget
 
-- Mapping Contracts and endpoint handlers to decouple layers.
-Mapster -> doc
+Carter is a framework that is a thin layer of extension methods and functionality over ASP.NET Core. 
+It simplifies the process of defining and organizing endpoints in your application.
+
+- [Carter Community](https://github.com/CarterCommunity/Carter/blob/main/README.md)
+
+### Mapping Contracts and endpoint handlers to decouple layers.
+
+- [Mapster nuget](https://github.com/MapsterMapper/Mapster/blob/master/README.md)
 
  
-- FluentValidation and MediatR pipeline:
- // Program.cs Register MediatR ValidationBehavior.cs
+### FluentValidation and MediatR pipeline
+
+- Program.cs Register MediatR ValidationBehavior.cs
 
 
+### Solution structure
+
+```plaintext
+Movies.Api/
+├── 📁Behaviors/
+│   └── ValidationBehavior.cs
+├── 📁Configuration/
+│   └── MapsterConfiguration.cs
+├── 📁Contracts/
+│   ├── 📁Requests/
+│   │   ├── CreateMovieRequest.cs
+│   │   ├── RateMovieRequest.cs
+│   │   └── UpdateMovieRequest.cs
+│   ├── 📁Responses/
+│   │   ├── GenreDto.cs
+│   │   └── MovieDto.cs
+├── 📁Data/
+│   ├── 📁Migrations/
+│   └── ApplicationDbContext.cs
+├── 📁Entities/
+│   ├── Genre.cs
+│   ├── Movie.cs
+│   ├── MovieGenre.cs
+│   └── MovieRating.cs
+├── 📁Extensions/
+│   └── ResultExtensions.cs
+├── 📁Features/
+│   ├── 📁Movies/
+│   │   ├── 📁CreateMovie/
+│   │   │   ├── CreateMovieCommand.cs
+│   │   │   ├── CreateMovieCommandHandler.cs
+│   │   │   ├── CreateMovieEndpoint.cs
+│   │   │   └── CreateMovieValidator.cs
+│   │   ├── 📁GetMovie/
+│   │   │   ├── GetMovieEndpoint.cs
+│   │   │   ├── GetMovieQuery.cs
+│   │   │   └── GetMovieQueryHandler.cs
+│   │   ├── 📁UpdateMovie/
+│   │   │   ├── UpdateMovieCommand.cs
+│   │   │   ├── UpdateMovieCommandHandler.cs
+│   │   │   ├── UpdateMovieEndpoint.cs
+│   │   │   └── UpdateMovieValidator.cs
+│   │   ├── 📁DeleteMovie/
+│   │   │   ├── DeleteMovieCommand.cs
+│   │   │   ├── DeleteMovieCommandHandler.cs
+│   │   │   └── DeleteMovieEndpoint.cs
+│   │   ├── 📁RateMovie/
+│   │   │   ├── RateMovieCommand.cs
+│   │   │   ├── RateMovieCommandHandler.cs
+│   │   │   ├── RateMovieEndpoint.cs
+│   │   │   └── RateMovieValidator.cs
+│   │   ├── 📁SearchMovies/
+│   │   │   ├── SearchMoviesQuery.cs
+│   │   │   ├── SearchMoviesQueryHandler.cs
+│   │   │   └── SearchMovieEndpoint.cs
+├── 📁Middleware/
+│   └── GlobalExceptionHandler.cs
+├── 📁Services/
+│   └── DateTimeProvider.cs
+
+```
 
 ### What is the next
 - GET Requests and Pagination
@@ -98,24 +160,24 @@ Mapster -> doc
 - HATEOAS
 - Health Checks https://youtu.be/p2faw9DCSsY?si=LjCPAhr1os0Czrtp
 
-#### References
- - Youtube: https://youtu.be/msjnfdeDCmo?si=tt7k_vb2R6-zWi7O
+#### References:
  - [Minimal APIs Overview](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview?view=aspnetcore-8.0)
- - [Basic Authentication Tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test)
+ 
 
-
-
- He
+ - ASP.NET-Core-Vertical-Slice-Architecture
 
  https://github.com/jeangatto
+
  https://github.com/jeangatto/ASP.NET-Core-Vertical-Slice-Architecture/tree/main/src/Blog.PublicAPI
 
 
- Nadir Badnjevic
+ - Nadir Badnjevic
 
- - https://nadirbad.dev/vertical-slice-architecture-dotnet
- https://github.com/nadirbad/VerticalSliceArchitecture
+  https://nadirbad.dev/vertical-slice-architecture-dotnet
+
+  https://github.com/nadirbad/VerticalSliceArchitecture
 
 
- Code Style
- https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options?view=vs-2019
+- Code Style
+
+  https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options?view=vs-2019

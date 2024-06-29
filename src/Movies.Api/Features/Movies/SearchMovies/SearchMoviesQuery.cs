@@ -1,7 +1,7 @@
 ﻿// Features/Movies/SearchMovies/SearchMoviesQuery.cs
 using Common.Core;
 using MediatR;
-using Movies.Api.Features.Movies.Models;
+using Movies.Api.Contracts.Responses;
 
 namespace Movies.Api.Features.Movies.SearchMovies
 {

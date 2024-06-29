@@ -1,7 +1,8 @@
 ﻿namespace Movies.Api.Configuration
 {
     using Mapster;
-    using Movies.Api.Features.Movies.Models;
+    using Movies.Api.Contracts.Responses;
+    using Movies.Api.Entities;
 
     public static class MapsterConfiguration
     {

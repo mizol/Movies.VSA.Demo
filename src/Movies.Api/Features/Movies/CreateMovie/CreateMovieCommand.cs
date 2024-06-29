@@ -9,5 +9,4 @@ namespace Movies.Api.Features.Movies.CreateMovie
         int ReleaseYear,
         string Description,
         List<Guid> GenreIds) : IRequest<Result<Guid>>;
-
 }

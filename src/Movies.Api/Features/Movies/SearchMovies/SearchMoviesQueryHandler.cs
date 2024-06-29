@@ -3,8 +3,8 @@ using Common.Core;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Movies.Api.Contracts.Responses;
 using Movies.Api.Data;
-using Movies.Api.Features.Movies.Models;
 
 namespace Movies.Api.Features.Movies.SearchMovies
 {

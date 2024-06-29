@@ -3,7 +3,7 @@ using Common.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Movies.Api.Data;
-using Movies.Api.Features.Movies.Models;
+using Movies.Api.Entities;
 
 namespace Movies.Api.Features.Movies.RateMovie
 {

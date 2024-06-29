@@ -1,4 +1,4 @@
-﻿namespace Movies.Api.Features.Movies.Models
+﻿namespace Movies.Api.Entities
 {
     public class Genre
     {

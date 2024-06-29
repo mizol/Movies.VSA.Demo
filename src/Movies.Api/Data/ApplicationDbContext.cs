@@ -1,6 +1,6 @@
 ﻿// Movies.Api.Data/ApplicationDbContext.cs
 using Microsoft.EntityFrameworkCore;
-using Movies.Api.Features.Movies.Models;
+using Movies.Api.Entities;
 
 namespace Movies.Api.Data
 {
