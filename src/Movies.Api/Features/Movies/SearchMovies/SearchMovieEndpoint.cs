@@ -16,7 +16,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(new SearchMoviesQuery(title, releaseYear, genre));
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
+                    : Results.BadRequest(result.MapToProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("SearchMovies")
             .Produces(StatusCodes.Status400BadRequest)

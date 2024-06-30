@@ -1,7 +1,7 @@
-﻿// Features/Movies/DeleteMovie/DeleteMovieCommandHandler.cs
-using Common.Core;
+﻿using Common.Core;
 using MediatR;
 using Movies.Api.Data;
+using Movies.Api.Features.Movies.Validation;
 
 namespace Movies.Api.Features.Movies.DeleteMovie
 {
@@ -20,7 +20,7 @@ namespace Movies.Api.Features.Movies.DeleteMovie
             
             if (movie == null)
             {
-                return Result.Failure(new Error("Movie.NotFound", $"Movie not found by id: {request.Id}"));
+                return Result.Failure(MovieErrors.MovieNotFound(request.Id));
             }
 
             _context.Movies.Remove(movie);

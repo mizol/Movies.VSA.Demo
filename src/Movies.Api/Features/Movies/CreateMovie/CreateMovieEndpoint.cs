@@ -11,7 +11,6 @@ namespace Movies.Api.Features.Movies.CreateMovie
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            // CreateMovie
             app.MapPost("/movies", async (CreateMovieRequest request, ISender sender) =>
             {
                 var command = request.Adapt<CreateMovieCommand>();
@@ -19,7 +18,7 @@ namespace Movies.Api.Features.Movies.CreateMovie
 
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
+                    : Results.BadRequest(result.MapToProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("CreateMovie")
             .Produces(StatusCodes.Status400BadRequest)

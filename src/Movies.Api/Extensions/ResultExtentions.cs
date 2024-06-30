@@ -5,7 +5,7 @@ namespace Movies.Api.Extensions
 {
     public static class ResultExtentions
     {
-        public static ProblemDetails GetProblemDetails(this Result result, int statusCode)
+        public static ProblemDetails MapToProblemDetails(this Result result, int statusCode)
         {
             if (result == null)
             {

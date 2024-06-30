@@ -15,7 +15,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(new GetMovieQuery(id));
                 return result.IsSuccess
                     ? Results.Ok(result.Value)
-                    : Results.NotFound(result.GetProblemDetails(StatusCodes.Status404NotFound));
+                    : Results.NotFound(result.MapToProblemDetails(StatusCodes.Status404NotFound));
             })
             .WithName("GetMovie")
             .Produces(StatusCodes.Status404NotFound)

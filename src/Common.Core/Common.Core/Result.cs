@@ -26,7 +26,11 @@
 
         public static Result Success() => new Result(true, Error.None);
 
+        public static Result<T> Success<T>() => new Result<T>(default, Error.None);
+
         public static Result Failure(Error error) => new Result(false, error);
+
+        public static Result<T> Failure<T>(Error error) => new Result<T>(default, error);
 
         public void AddError(Error error) => Errors.Add(error);
     }
@@ -53,9 +57,8 @@
             Value = value;
         }
 
-        public static Result<T> Success(T value) => new Result<T>(true, value, Error.None);
-        public static Result<T> Failure(T value, Error error) => new Result<T>(false, default(T)!, error);                
-        public static new Result<T> Failure(Error error) => new Result<T>(false, default(T)!, error);
+        public static Result<T> Success(T value) => new Result<T>(isSuccess: true, value, Error.None);
+        public static Result<T> Failure(T value, Error error) => new Result<T>(isSuccess: false, default(T)!, error);
         
     }
 }

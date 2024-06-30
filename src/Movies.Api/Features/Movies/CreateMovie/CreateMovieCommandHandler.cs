@@ -1,5 +1,5 @@
-﻿// Features/Movies/CreateMovie/CreateMovieCommandHandler.cs
-using Common.Core;
+﻿using Common.Core;
+using FluentValidation;
 using MediatR;
 using Movies.Api.Data;
 using Movies.Api.Entities;
@@ -9,14 +9,24 @@ namespace Movies.Api.Features.Movies.CreateMovie
     public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Result<Guid>>
     {
         private readonly ApplicationDbContext _context;
+        private readonly IValidator<CreateMovieCommand> _validator;
 
-        public CreateMovieCommandHandler(ApplicationDbContext context)
+        public CreateMovieCommandHandler(ApplicationDbContext context, IValidator<CreateMovieCommand> validator)
         {
             _context = context;
+            _validator = validator;
         }
 
         public async Task<Result<Guid>> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
         {
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                return Result.Failure<Guid>(new Error(
+                    "CreateMovie.Validation",
+                    validationResult.ToString()));
+            }
+
             var movie = new Movie
             {
                 Id = Guid.NewGuid(),

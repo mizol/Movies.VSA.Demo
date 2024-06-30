@@ -1,5 +1,4 @@
-﻿// Features/Movies/CreateMovie/CreateMovieValidator.cs
-using Common.Core;
+﻿using Common.Core;
 using FluentValidation;
 
 namespace Movies.Api.Features.Movies.UpdateMovie

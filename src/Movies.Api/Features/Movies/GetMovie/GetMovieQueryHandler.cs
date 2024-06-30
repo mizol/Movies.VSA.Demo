@@ -1,10 +1,10 @@
-﻿// Features/Movies/GetMovie/GetMovieQueryHandler.cs
-using Common.Core;
+﻿using Common.Core;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Movies.Api.Contracts.Responses;
 using Movies.Api.Data;
+using Movies.Api.Features.Movies.Validation;
 
 namespace Movies.Api.Features.Movies.GetMovie
 {
@@ -28,7 +28,7 @@ namespace Movies.Api.Features.Movies.GetMovie
 
             if (movie == null)
             {
-                return Result<MovieDto>.Failure(new Error("Movie.NotFound", $"Movie not found by if: {request.Id}."));
+                return Result.Failure<MovieDto>(MovieErrors.MovieNotFound(request.Id));
             }
 
             var movieDto = movie.Adapt<MovieDto>();

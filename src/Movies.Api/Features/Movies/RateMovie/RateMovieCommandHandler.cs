@@ -1,9 +1,9 @@
-﻿// Features/Movies/RateMovie/RateMovieCommandHandler.cs
-using Common.Core;
+﻿using Common.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Movies.Api.Data;
 using Movies.Api.Entities;
+using Movies.Api.Features.Movies.Validation;
 
 namespace Movies.Api.Features.Movies.RateMovie
 {
@@ -24,7 +24,7 @@ namespace Movies.Api.Features.Movies.RateMovie
 
             if (movie == null)
             {
-                return Result.Failure(new Error("NotFound", "Movie not found."));
+                return Result.Failure(MovieErrors.MovieNotFound(request.MovieId));
             }
 
             movie.MovieRatings.Add(new MovieRating { MovieId = request.MovieId, Rating = request.Rating });

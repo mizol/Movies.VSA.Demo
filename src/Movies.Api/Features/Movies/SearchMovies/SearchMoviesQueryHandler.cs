@@ -1,5 +1,4 @@
-﻿// Features/Movies/SearchMovies/SearchMoviesQueryHandler.cs
-using Common.Core;
+﻿using Common.Core;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

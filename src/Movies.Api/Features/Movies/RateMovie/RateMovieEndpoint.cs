@@ -23,7 +23,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(command);
                 return result.IsSuccess
                     ? Results.Ok()
-                    : Results.BadRequest(result.GetProblemDetails(StatusCodes.Status400BadRequest));
+                    : Results.BadRequest(result.MapToProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("RateMovie")
             .Produces(StatusCodes.Status400BadRequest)

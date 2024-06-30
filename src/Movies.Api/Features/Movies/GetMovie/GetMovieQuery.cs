@@ -1,5 +1,4 @@
-﻿// Features/Movies/GetMovie/GetMovieQuery.cs
-using Common.Core;
+﻿using Common.Core;
 using MediatR;
 using Movies.Api.Contracts.Responses;
 

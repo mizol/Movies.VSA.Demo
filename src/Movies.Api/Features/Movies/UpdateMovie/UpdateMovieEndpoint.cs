@@ -2,6 +2,7 @@
 using Mapster;
 using MediatR;
 using Movies.Api.Contracts.Requests;
+using Movies.Api.Extensions;
 using Movies.Api.Features.Movies.UpdateMovie;
 
 namespace Movies.Api.Features.Movies.GetMovie
@@ -21,7 +22,7 @@ namespace Movies.Api.Features.Movies.GetMovie
                 var result = await sender.Send(command);
                 return result.IsSuccess
                     ? Results.Ok()
-                    : Results.BadRequest(result.Errors);
+                    : Results.BadRequest(result.MapToProblemDetails(StatusCodes.Status400BadRequest));
             })
             .WithName("UpdateMovie")
             .Produces(StatusCodes.Status400BadRequest)
