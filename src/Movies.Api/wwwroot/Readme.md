@@ -84,8 +84,12 @@ It simplifies the process of defining and organizing endpoints in your applicati
  
 ### FluentValidation and MediatR pipeline
 
-- Program.cs Register MediatR ValidationBehavior.cs
+- [CQRS Validation with MediatR Pipeline and FluentValidation](https://www.milanjovanovic.tech/blog/cqrs-validation-with-mediatr-pipeline-and-fluentvalidation)
 
+
+### Architecture tests
+
+- [Enforcing Software Architecture With Architecture Tests](https://www.milanjovanovic.tech/blog/enforcing-software-architecture-with-architecture-tests)
 
 ### Solution structure
 
