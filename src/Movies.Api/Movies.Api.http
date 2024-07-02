@@ -1,5 +1,6 @@
+@HostAddress = https://localhost:7069
 ### Create a Movie
-POST https://localhost:7069/movies
+POST {{HostAddress}}/movies
 Content-Type: application/json
 
 {
@@ -10,11 +11,11 @@ Content-Type: application/json
 }
 
 ### Get a Movie by ID
-GET https://localhost:7069/movies/e35f3d1a-0558-4270-b118-594589bc2bdf
+GET {{HostAddress}}/movies/e35f3d1a-0558-4270-b118-594589bc2bdf
 Content-Type: application/json
 
 ### Update a Movie
-PUT https://localhost:7069/movies/e35f3d1a-0558-4270-b118-594589bc2bdf
+PUT {{HostAddress}}/movies/e35f3d1a-0558-4270-b118-594589bc2bdf
 Content-Type: application/json
 
 {
@@ -26,11 +27,11 @@ Content-Type: application/json
 }
 
 ### Delete a Movie
-DELETE https://localhost:7069/movies/aacb556f-f696-4750-969a-015b214ba9d1
+DELETE {{HostAddress}}/movies/aacb556f-f696-4750-969a-015b214ba9d1
 Content-Type: application/json
 
 ### Rate a Movie
-POST https://localhost:7069/movies/e35f3d1a-0558-4270-b118-594589bc2bdf/rate
+POST {{HostAddress}}/movies/e35f3d1a-0558-4270-b118-594589bc2bdf/rate
 Content-Type: application/json
 
 {
@@ -39,5 +40,5 @@ Content-Type: application/json
 }
 
 ### Search Movies
-GET https://localhost:7069/movies/search?title=Test&genre=Sci-Fi
+GET {{HostAddress}}/movies/search?title=Test&genre=Sci-Fi
 Content-Type: application/json
