@@ -33,7 +33,7 @@ namespace Movies.Api.Features.Movies.GetMovie
 
             var movieDto = movie.Adapt<MovieDto>();
 
-            return Result<MovieDto>.Success(movieDto);
+            return Result.Success(movieDto);
         }
     }
 }

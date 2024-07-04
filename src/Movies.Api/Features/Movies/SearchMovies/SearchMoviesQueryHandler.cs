@@ -45,7 +45,7 @@ namespace Movies.Api.Features.Movies.SearchMovies
                 .ToListAsync(cancellationToken);
 
             var movieDtoList = movies.Adapt<List<MovieDto>>();
-            return Result<List<MovieDto>>.Success(movieDtoList);
+            return Result.Success(movieDtoList);
         }
     }
 

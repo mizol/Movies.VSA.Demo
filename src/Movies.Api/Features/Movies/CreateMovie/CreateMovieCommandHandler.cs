@@ -39,7 +39,7 @@ namespace Movies.Api.Features.Movies.CreateMovie
             _context.Movies.Add(movie);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return Result<Guid>.Success(movie.Id);
+            return Result.Success(movie.Id);
         }
     }
 

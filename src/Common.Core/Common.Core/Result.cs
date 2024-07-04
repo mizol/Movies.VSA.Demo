@@ -26,7 +26,7 @@
 
         public static Result Success() => new Result(true, Error.None);
 
-        public static Result<T> Success<T>() => new Result<T>(default, Error.None);
+        public static Result<T> Success<T>(T value) => new Result<T>(value, Error.None);
 
         public static Result Failure(Error error) => new Result(false, error);
 
